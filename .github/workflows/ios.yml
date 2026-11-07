@@ -19,7 +19,9 @@ jobs:
         run: npm ci || npm install
 
       - name: 同步网页资源到原生工程
-        run: npx cap sync ios
+        run: |
+          npm run copy:web
+          npx cap sync ios
 
       - name: 安装 CocoaPods 依赖
         run: |

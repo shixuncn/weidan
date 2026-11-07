@@ -19,7 +19,9 @@ jobs:
         run: npm ci || npm install
 
       - name: 同步网页资源到原生工程
-        run: npx cap sync android
+        run: |
+          npm run copy:web
+          npx cap sync android
 
       - uses: actions/setup-java@v4
         with:
