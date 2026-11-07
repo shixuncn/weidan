@@ -888,6 +888,9 @@
           showRecognized({ ok: true, text: asrText, source: 'audio' });
         } else if (ocrText) {
           showRecognized({ ok: true, text: ocrText, source: 'ocr' });
+        } else if (!apiBase()) {
+          // 静态网页/服务不可达：退回设备端离线字幕识别
+          return localOcrRecognize(file, {});
         } else {
           return fallbackWholeVideo(file, o.noFrames ? '无法读取这个视频的画面，试试手机相册里的原视频' : '');
         }
